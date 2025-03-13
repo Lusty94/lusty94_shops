@@ -4,9 +4,9 @@ game 'gta5'
 
 author 'Lusty94'
 
-name "lusty94_blackmarket"
+name "lusty94_shops"
 
-description 'Black Martket Script For For QB Core'
+description 'Shop Script For For QB Core'
 
 version '1.0.0'
 
