@@ -14,11 +14,11 @@
 
 ## Key Features 🌟
 
-✅ **Pre-Configured Shop Types** – Ready-to-use shops for supermarket items, liqour, fuel stations, hardware, weed shops, ammunation, black market, prison canteen, lesuire items, and job based shops all with multiple configured locations!
-✅ **Fully Modular & Configurable** – Easily add **custom shops**, change locations, adjust item prices and tailor it to fit your server’s economy!
-✅ **Supports Cash & Bank Payments** – Players can choose to pay with cash or via bank transfer!
-✅ **Custom Language Support** – Easily translate or modify text via the **built-in language section**!  
-✅ **Seamless QB-Core Integration** – Works out of the box with **ox_inventory, qb-inventory, ox_target, qb-target** and many more 3rd party resources!  
+- ✅ **Pre-Configured Shop Types** – Ready-to-use shops for supermarket items, liqour, fuel stations, hardware, weed shops, ammunation, black market, prison canteen, lesuire items, and job based shops all with multiple configured locations!
+- ✅ **Fully Modular & Configurable** – Easily add **custom shops**, change locations, adjust item prices and tailor it to fit your server’s economy!
+- ✅ **Supports Cash & Bank Payments** – Players can choose to pay with cash or via bank transfer!
+- ✅ **Custom Language Support** – Easily translate or modify text via the **built-in language section**!  
+- ✅ **Seamless QB-Core Integration** – Works out of the box with **ox_inventory, qb-inventory, ox_target, qb-target** and many more 3rd party resources!  
 
 
 
