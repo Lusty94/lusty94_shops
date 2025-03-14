@@ -232,24 +232,45 @@ RegisterNetEvent("lusty94_shops:client:input", function(data)
     local maxAmount = item.amount or 1
     setBusy(true)
     LockInventory(true)
-    local input = lib.inputDialog(ItemLabel(item.name)..'\n Price: $'..item.price, {
-        {
-            type = "slider",
-            label = "Select Quantity To Purchase",
-            min = 1,
-            max = maxAmount,
-            required = true,
-        },
-        {
-            type = "select",
-            label = "Select Payment Method",
-            options = {
-                { label = "Cash ($" ..cash..")", value = "cash" },
-                { label = "Bank ($" ..bank..")", value = "bank" },
+    local input = nil
+    if InvType == 'qb' then  -- qb uses bank and cash accounts so requires both inputs
+        input = lib.inputDialog(ItemLabel(item.name)..'\n Price: $'..item.price, {
+            {
+                type = "slider",
+                label = "Select Quantity To Purchase",
+                min = 1,
+                max = maxAmount,
+                required = true,
             },
-            required = true
-        }
-    })
+            {
+                type = "select",
+                label = "Select Payment Method",
+                options = {
+                    { label = "Cash ($" ..cash..")", value = "cash" },
+                    { label = "Bank ($" ..bank..")", value = "bank" },
+                },
+                required = true
+            }
+        })
+    elseif InvType == 'ox' then -- ox doesnt use bank account payments as it uses cash as an item instead so only needs the cash input
+        input = lib.inputDialog(ItemLabel(item.name)..'\n Price: $'..item.price, {
+            {
+                type = "slider",
+                label = "Select Quantity To Purchase",
+                min = 1,
+                max = maxAmount,
+                required = true,
+            },
+            {
+                type = "select",
+                label = "Select Payment Method",
+                options = {
+                    { label = "Cash ($" ..cash..")", value = "cash" },
+                },
+                required = true
+            }
+        })
+    end
     if not input then CLNotify(Config.Language.Notifications.Cancelled, 'error', 5000) setBusy(false) LockInventory(false) return end
     local quantity, paymentMethod = input[1], input[2]
     local totalPrice = item.price * quantity

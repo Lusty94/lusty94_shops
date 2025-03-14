@@ -63,29 +63,6 @@ function addItem(src, item, amount, slot, info)
 end
 
 
---Remove Money Function
-function removeMoney(src, account, amount)
-    local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player then return end
-    if InvType == 'qb' then
-        if Player.Functions.RemoveMoney(account, amount, 'black-market purchase') then 
-            SVDebug('^2| Lusty94_Shops | DEBUG | Removing $'..amount..' '..account..' from player ID: '..src..'^7')
-            return true
-        end
-        return false
-    elseif InvType == 'ox' then
-        if exports.ox_inventory:RemoveItem(src, account, amount) then
-            SVDebug('^2| Lusty94_Shops | DEBUG | Removing $'..amount..' '..account..' from player ID: '..src..'^7')
-            return true
-        end
-        return false
-    elseif InvType == 'custom' then
-        --insert your own logic for removing money here
-    else
-        print('^1| Lusty94_Shops | DEBUG | ERROR: Unknown inventory type set in Config.CoreSettings.Inventory.Type! ' .. InvType .. '^7')
-    end
-end
 
 --Get The Label Of An Item
 function ItemLabel(label)
@@ -155,12 +132,31 @@ AddEventHandler("lusty94_shops:server:Complete", function(shopType, itemName, qu
         return
     end
     if paymentMethod == "cash" then
-        if removeMoney(src, 'cash', totalPrice) then -- if using ox_inventory change 'cash' to 'money' as ox_inventory uses items instead of accounts
-            paymentSuccess = true
+        if InvType == 'qb' then
+            if Player.Functions.RemoveMoney('cash', totalPrice, 'shops-purchase') then
+                SVDebug('^2| Lusty94_Shops | DEBUG | Removing $'..totalPrice..' cash from player ID: '..src..'^7')
+                paymentSuccess = true
+            end
+        elseif InvType == 'ox' then
+            if exports.ox_inventory:RemoveItem(src, 'money', totalPrice) then
+                SVDebug('^2| Lusty94_Shops | DEBUG | Removing $'..totalPrice..' from player ID: '..src..'^7')
+                paymentSuccess = true
+            end
+        elseif InvType == 'custom' then
+            --insert your own logic for removing cash here
+        else
+            print('^1| Lusty94_Shops | DEBUG | ERROR: Unknown inventory type set in Config.CoreSettings.Inventory.Type! ' .. InvType .. '^7')
         end
     elseif paymentMethod == "bank" then
-        if removeMoney(src, 'bank', totalPrice) then -- if using ox_inventory change 'bank' to 'money' as ox_inventory uses items instead of accounts
-            paymentSuccess = true
+        if InvType == 'qb' then
+            if Player.Functions.RemoveMoney('bank', totalPrice, 'shops-purchase') then
+                SVDebug('^2| Lusty94_Shops | DEBUG | Removing $'..totalPrice..' bank from player ID: '..src..'^7')
+                paymentSuccess = true
+            end
+        elseif InvType == 'custom' then
+            --insert your own logic for removing bank here
+        else
+            print('^1| Lusty94_Shops | DEBUG | ERROR: Unknown inventory type set in Config.CoreSettings.Inventory.Type! ' .. InvType .. '^7')
         end
     end
     if not paymentSuccess then SVNotify(src, Config.Language.Notifications.Failed, 'error', 5000) return end
