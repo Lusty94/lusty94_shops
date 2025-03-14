@@ -253,7 +253,6 @@ Config.Shops = {
             's_m_y_ammucity_01',
         },
         locations = { -- define spawn locations for the vendor must be vector4
-            vector4(-661.96, -933.53, 21.83, 177.05),
             vector4(809.68, -2159.13, 29.62, 1.43),
             vector4(1692.67, 3761.38, 34.71, 227.65),
             vector4(-331.23, 6085.37, 31.45, 228.02),
