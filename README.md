@@ -39,3 +39,4 @@
 - Ensure all dependencies are started BEFORE this script
 - If setting restrictions for jobs and ranks ensure these are in your jobs.lua to function correctly
 - If setting restrictions for licenes ensure these are present in your server as a valid license type and can or has been granted to players
+- If using ox_inventory make sure your item names match those of your items.lua and weapons.lua to prevent any issues
